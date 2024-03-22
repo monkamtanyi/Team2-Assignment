@@ -1,0 +1,570 @@
+01 Ticket: SAMPLE TICKETS TO TREAT AS A TEAM SECTION 1 OF 1 
+DATE : 2/12/2024
+
+Ticket 001 -- Basic File Operations
+Create a new directory called "my_documents" in your home directory.
+Create a text file named "my_notes.txt" inside "my_documents"Use the command line to move "my_notes.txt" to a subdirectory called "notes_archive" within "my_documents."
+Delete the "notes_archive" directory and all its contents using userdel command.
+
+Ticket 002 -- File Manipulation
+Create a new directory called "abi4abi", then inside it, create a .txt file using your first name . Write a sentence to the file. Use commands like cd, ls, touch, and nano or vim to perform these actions.
+
+Ticket 003 -- User Management
+Create a new user account with the username "testuser" using the useradd command.
+Set a password for the "testuser" account using the passwd command.
+Verify that you can log in as "testuser."
+Delete the "testuser" account
+
+Ticket 004-- File Permissions
+Practice hanging file permissions in Linux. Create a new file and set specific permissions for user, group, and others using the chmod command.
+
+Ticket 005-- Directory Navigation
+Practice navigating the Linux file system. Start in your home directory, then use commands like cd, ls, and pwd to move to different directories, list their contents, and display your current location.
+
+Ticket 006-- Search for Files
+Use the find command to search for specific files within a directory and its subdirectories. Experiment with different options to refine your search criteria.
+
+Ticket 007-- File Compression
+Explore file compression techniques in Linux using tools like tar and gzip. Create a compressed archive of a directory and extract its contents to a new location.
+
+Ticket 008 - Rename Files in  Directory
+Create a new directory named in your group-alias. Write a script that renames all files in a directory by adding a prefix or suffix to their names. Test it with a sample directory.
+(HERE IS A SAMPLE SCRIPT )
+
+#!/bin/bash
+
+# Define the directory path
+directory="/path/to/your/directory"
+
+# Define the prefix or suffix
+prefix="prefix_" # Change this to your desired prefix
+suffix="_suffix" # Change this to your desired suffix
+
+# Navigate to the directory
+cd "$group-alias" || exit
+
+# Rename all files in the directory
+for file in *; do
+    mv "$file" "${prefix}${file}${suffix}"
+done
+
+echo "Files renamed successfully."
+
+
+(NB: Replace "/path/to/your/directory" with the actual path to your directory. 
+Make sure to make the script executable using:
+chmod +x script_name.sh  in your command line.Then, execute the script: ./script_name.sh .This script will add the specified prefix and/or suffix to the names of all files in the specified directory.)
+SOLUTION
+[ec2-user@db ~]$ mkdir Group2
+[ec2-user@db ~]$ cd Group2
+[ec2-user@db Group2]$ touch test.txt trial.com food.cm orange.cm
+[ec2-user@db Group2]$ ls
+food.cm  orange.cm  test.txt  trial.com
+[ec2-user@db Group2]$ vi scriptrenamefile.sh
+[ec2-user@db Group2]$ pwd
+/home/ec2-user/Group2
+[ec2-user@db Group2]$  vi scriptrenamefile.sh
+[ec2-user@db Group2]$ cat scriptrenamefile.sh
+#!/bin/bash
+
+# Define the directory path
+directory="/home/ec2-user/Group2"
+
+# Define the prefix or suffix
+prefix="pre_" # Change this to your desired prefix
+suffix="_suf" # Change this to your desired suffix
+
+# Navigate to the directory
+cd "$Group2" || exit
+
+# Rename all files in the directory
+for file in *; do
+    mv "$file" "${prefix}${file}${suffix}"
+done
+
+echo "Files renamed successfully."
+
+[ec2-user@db Group2]$ sh scriptrenamefile.sh
+Files renamed successfully.
+[ec2-user@db Group2]$ ls
+pre_food.cm_suf    pre_scriptrenamefile.sh_suf  pre_trial.com_suf
+pre_orange.cm_suf  pre_test.txt_suf
+Note the scriptrenamfile,sh is also named as pre_scriptrenamefile.sh_suf  :
+Eg . 
+[ec2-user@db Group2]$ cat pre_scriptrenamefile.sh_suf
+#!/bin/bash
+
+# Define the directory path
+directory="/home/ec2-user/Group2"
+
+# Define the prefix or suffix
+prefix="pre_" # Change this to your desired prefix
+suffix="_suf" # Change this to your desired suffix
+
+# Navigate to the directory
+cd "$Group2" || exit
+
+# Rename all files in the directory
+for file in *; do
+    mv "$file" "${prefix}${file}${suffix}"
+done
+
+echo "Files renamed successfully."
+[ec2-user@db Group2]$ ls
+pre_food.cm_suf    pre_scriptrenamefile.sh_suf  pre_trial.com_suf
+pre_orange.cm_suf  pre_test.txt_suf
+
+Ticket 009-- Process Management
+Use commands like ps, top, and kill to manage processes in Linux. Practice listing running processes, monitoring resource usage, and terminating processes as needed
+ps: Displays a snapshot of the current processes
+    PID TTY          TIME CMD
+   1643 pts/0    00:00:00 bash
+  10773 pts/0    00:00:00 ps
+
+[ec2-user@db ~]$ ps aux  :Provides detailed information about all processes.
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  2.0 172052 16096 ?        Ss   15:42   0:01 /usr/lib/systemd/systemd --switched-root --system --deseria
+root           2  0.0  0.0      0     0 ?        S    15:42   0:00 [kthreadd]
+root           3  0.0  0.0      0     0 ?        I<   15:42   0:00 [rcu_gp]
+root           4  0.0  0.0      0     0 ?        I<   15:42   0:00 [rcu_par_gp]
+root           5  0.0  0.0      0     0 ?        I<   15:42   0:00 [slub_flushwq]
+root           6  0.0  0.0      0     0 ?        I<   15:42   0:00 [netns]
+root           8  0.0  0.0      0     0 ?        I<   15:42   0:00 [kworker/0:0H-events_highpri]   continues
+
+[ec2-user@db ~]$ man ps : get manual of how ps command works
+To see every process on the system using standard syntax:
+          ps -e
+          ps -ef
+          ps -eF
+          ps -ely
+check the process  hierarchy with:  pstree
+[ec2-user@db ~]$  ps -ef : To see every process on the system using standard syntax
+UID          PID    PPID  C STIME TTY          TIME CMD
+root           1       0  0 15:42 ?        00:00:01 /usr/lib/systemd/systemd --switched-root --system --deserialize 31
+root           2       0  0 15:42 ?        00:00:00 [kthreadd]
+root           3       2  0 15:42 ?        00:00:00 [rcu_gp]ie
+root           4       2  0 15:42 ?        00:00:00 [rcu_par_gp]
+root           5       2  0 15:42 ?        00:00:00 [slub_flushwq]
+root           6       2  0 15:42 ?        00:00:00 [netns]
+
+top command:  Use top to monitor real-time resource usage: Displays real-time system statistics and a list of processes. In top, you can see information like CPU usage, memory usage, and a list of processes.
+Operation
+       When  operating top, the two most important keys are the help (h or ?)  key and quit (`q') key.  Alternatively, you could simply use the traditional interrupt key (^C) when you're done.
+ec2-user@db ~]$ top
+top - 16:31:39 up 49 min,  1 user,  load average: 0.00, 0.02, 0.00
+Tasks: 110 total,   1 running, 109 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.3 us,  0.0 sy,  0.0 ni, 99.3 id,  0.0 wa,  0.0 hi,  0.3 si,  0.0 st
+MiB Mem :    754.0 total,    317.4 free,    280.0 used,    272.0 buff/cache
+MiB Swap:      0.0 total,      0.0 free,      0.0 used.    474.0 avail Mem
+ID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+      1 root      20   0  172052  16104  10632 S   0.0   2.1   0:01.43 systemd
+      2 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kthreadd
+      3 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_gp   continues
+Monitor specific processes using htop:   htop -p PID
+Remember to replace PID and process_name with the actual Process ID and process name, respectively. Always be cautious when terminating processes, especially with kill -9, as it may lead to data loss or instability.
+
+Kill   Terminating Processes:
+Identify the process you want to terminate, note its PID, and use kilt
+Assume PID of the process to terminate is 345, use
+Kill 345
+
+forcefully terminate a process using kill -9 ie  kill -9 345
+Always exercise caution when using commands like kill -9 as it forcefully terminates processes without giving them a chance to clean up. It's preferable to use kill without -9 first to allow graceful termination.
+Use pkill if you know the process name: pkill process_name, pkill example (If the process name is example}
+
+Ticket 10-- Systemd Unit Management
+Create and manage systemd unit files to control system services, timers, and targets on your Linux system. Customize unit configurations using directives such as ExecStart, Restart, and Timeout to define service behavior and dependencies.
+Let's create examples for a systemd service, timer, and target, showcasing various directives like ExecStart, Restart, Timeout, and dependencies.
+1. Systemd Service Unit:
+File: /etc/systemd/system/myservice.service
+[Unit]
+Description=My Custom Service
+After=network.target   # Add any dependencies as needed
+
+[Service]
+ExecStart=/path/to/myservice.sh
+Restart=always         # Restart the service if it exits (optional)
+TimeoutStartSec=30     # Maximum time to wait for service start (optional)
+User=myuser             # Specify the user to run the service as (optional)
+
+[Install]
+WantedBy=default.target
+2. Systemd Timer Unit:
+File: /etc/systemd/system/mytimer.timer
+
+F [Unit]
+Description=My Custom Timer
+
+[Timer]
+OnBootSec=30           # Wait 30 seconds after boot
+OnUnitActiveSec=1h     # Run every 1 hour after activation
+Unit=mytimer.service    # Specify the unit to activate when the timer elapses
+
+[Install]
+WantedBy=timers.target
+3. Systemd Target Unit:
+File: /etc/systemd/system/mytarget.target
+[Unit]
+Description=My Custom Target
+Requires=myservice.service mytimer.timer   # Specify dependencies
+
+[Install]
+WantedBy=default.target
+
+Usage:
+1.	Reload systemd:
+bash
+sudo systemctl daemon-reload
+2, Start/Enable/Check Status for Service:
+sudo systemctl start myservice.service
+sudo systemctl enable myservice.service
+sudo systemctl status myservice.service
+3.Start/Enable/Check Status for Timer:
+sudo systemctl start mytimer.timer
+sudo systemctl enable mytimer.timer
+sudo systemctl status mytimer.timer
+4. Start/Enable/Check Status for Target:
+sudo systemctl start mytarget.target
+sudo systemctl enable mytarget.target
+sudo systemctl status mytarget.target
+Adjust paths, user, and other configurations based on your specific requirements. These examples provide a foundation for creating and managing systemd units on your Linux system.
+
+
+Ticket 11-- Adding a User to Sudoers
+Edit the sudoers file to grant a user sudo privileges on your Linux system. Use the visudo command to safely modify the sudoers configuration and add the user to the sudo group for administrative access.
+The recommended way to do this is by using the visudo command, which provides syntax checking to prevent errors that could lock you out of your system.
+Follow these steps to add a user to the sudoers file:
+1.	Open the sudoers file with visudo:
+sudo visudo
+sudo visudo 
+This will open the sudoers file in the system's default text editor.
+2.	Navigate to the section that configures user privileges. Look for a line that looks like:
+## Allow members of the sudo group to execute any command
+%sudo   ALL=(ALL:ALL) ALL
+## Allow members of the sudo group to execute any command %sudo ALL=(ALL:ALL) ALL 
+If you don't find it, look for similar lines allowing sudo access.
+3.	To add a user to the sudo group, add a line below the %sudo line, replacing username with the actual username:
+%sudo   ALL=(ALL:ALL) ALL
+username   ALL=(ALL:ALL) ALL
+
+%sudo ALL=(ALL:ALL) ALL username ALL=(ALL:ALL) ALL 
+Save the file and exit the text editor.
+4.	Save the changes and exit the editor. If you're using nano, press Ctrl + X, then press Y to confirm changes and Enter to exit. For vim, press Esc, type :wq, and press Enter.
+Now, the specified user has sudo privileges on the system. They can use the sudo command to execute commands with administrative privileges.
+Remember that modifying the sudoers file requires elevated privileges, so you might need to enter your own password when using sudo visudo. Additionally, be cautious when editing the sudoers file to avoid syntax errors that could lead to access issues. Always use visudo for safe editing.
+
+
+Ticket 12-- Using Vi to Write Simple Text
+Practice using the Vi text editor to write simple sentences or notes in a text file. Learn basic Vi commands for navigation, editing, and saving text files, such as i for insert mode, :wq for save and exit, and :q! for exit without saving.
+-	Open a Terminal: Open a terminal on your Linux system.
+-	Create a New text File: Create a new text file named skills.txt:
+vi skills.txt
+-	press i to enter insert mode. You'll see "-- INSERT --" at the bottom.
+
+-	Type Simple Sentences: Write some simple sentences or notes. For example:
+This is a practice file for using Vi.
+Vi is a powerful text editor.
+Learning Vi commands can be beneficial.
+-	Exit Insert Mode: To exit insert mode and return to command mode, press Esc.
+-	Save and Exit: Save your changes and exit by typing :wq and pressing Enter.
+•	: puts you in command-line mode.
+•	w stands for write (save).
+•	q stands for quit.
+So, :wq means save and quit.
+
+-	View the File: If you want to view the content of the file without editing, you can use the cat command:
+cat skills.txt
+This will display the contents of the file.
+-	Exit Without Saving (if needed): If you make changes but want to exit without saving, you can use :q!:
+•	: puts you in command-line mode.
+•	q stands for quit.
+•	! is for force.
+So, :q! means quit without saving.
+Remember, practice is key to becoming comfortable with vi. Feel free to explore more advanced commands as you become familiar with the basics.
+
+
+
+
+Ticket 13-- Checking System Information
+Use commands like uname,  and hostnamectl to display system information such as distribution name and release, and system hostname.
+You can use various commands to display system information in Linux. Here are examples using uname and hostnamectl:
+1.	Using uname to Display System Information:
+•	uname provides basic information about the system.
+Uname -a   eg
+[ec2-user@db ~]$ uname
+Linux
+[ec2-user@db ~]$ uname -a
+Linux db 5.14.0-362.18.1.el9_3.x86_64 #1 SMP PREEMPT_DYNAMIC Wed Jan 3 15:54:45 EST 2024 x86_64 x86_64 x86_64 GNU/Linux
+
+Using hostnamectl to Display System Information:
+•	hostnamectl is a systemd command to query and change the system hostname and related settings.
+•	hostnamectl
+This command provides detailed information about the system, including the static hostname, operating system, kernel version, and more.
+[ec2-user@db ~]$ hostnamectl
+ Static hostname: db
+       Icon name: computer-vm
+         Chassis: vm 🖴
+      Machine ID: 2fbb7fa80f3041089661511142de853a
+         Boot ID: 890fc9985cd74f26b499bebee2dcfc1c
+  Virtualization: xen
+Operating System: Red Hat Enterprise Linux 9.3 (Plow)
+     CPE OS Name: cpe:/o:redhat:enterprise_linux:9::baseos
+          Kernel: Linux 5.14.0-362.18.1.el9_3.x86_64
+    Architecture: x86-64
+ Hardware Vendor: Xen
+  Hardware Model: HVM domU
+Firmware Version: 4.11.amazon
+-	Display Distribution Name and Release: To specifically display distribution name and release, you can use commands like lsb_release (Linux Standard Base) or inspect distribution-specific files.
+•	Using lsb_release:
+•	lsb_release -a
+For Debian/Ubuntu-based systems, you can check the /etc/os-release file:
+cat /etc/os-release
+For Red Hat/Fedora-based systems, check the /etc/redhat-release file:
+cat /etc/redhat-release
+[ec2-user@db ~]$ cat /etc/redhat-release
+Red Hat Enterprise Linux release 9.3 (Plow)
+Remember to adapt these commands based on your specific Linux distribution. Using a combination of uname, hostnamectl, and distribution-specific commands, you can get a comprehensive overview of your system's information.
+
+Ticket 14-- Listing Files and Directories
+Use commands like ls, ls -l, and ls -a to list files and directories in the current working directory. Explore options for displaying detailed file information, including permissions, ownership, and hidden files.
+The ls command is used to list files and directories in the current working directory. Here are examples using different options to display detailed file information:
+1.	List Files and Directories:
+Ls
+2.	List Files with Detailed Information (-l):
+ls -l   or ll     : The -l option provides a detailed listing that includes information such as permissions, ownership, size, and modification time.
+[ec2-user@db ~]$ ll -l
+total 24
+-rw-r--r--. 1 ec2-user ec2-user  411 Feb 21 18:47 adduser.sh
+drwxr-xr-x. 9 ec2-user ec2-user 4096 Jan  5 08:28 apache-tomcat-9.0.85
+-rw-r--r--. 1 ec2-user ec2-user   22 Feb 21 20:51 class35
+                        3 List All Files, Including Hidden Ones (-a):
+                              ls -a  The -a option shows hidden files (those starting with a dot .). Hidden files are typically configuration files.
+[ec2-user@db ~]$ ls -a
+.   adduser.sh    .bash_history  .bash_profile  class35  filemgt.sh  install   monitor_servers.sh  .ssh..  apache-tomcat-9.0.85  .bash_logout   .bashrc        .config  Group2      .lesshst  packageinstall.sh   .viminfo
+4 List Files with Detailed Information, Including Hidden Ones (-la or -al):
+ls -la     :combining the -l and -a options provides a detailed listing that includes hidden files.
+
+[ec2-user@db ~]$ ls -al
+total 56
+drwx------. 6 ec2-user ec2-user 4096 Feb 23 16:29 .
+drwxr-xr-x. 6 root     root       60 Feb 21 18:48 ..
+
+                         5 Sort Files by Modification Time (-lt):
+                        ls -lt   The -t option sorts files by modification time, showing the most recently modified files first.
+                         [ec2-user@db ~]$ ls -lt
+total 24
+drwxr-xr-x. 2 ec2-user ec2-user  138 Feb 23 15:51 Group2
+-rw-r--r--. 1 root     root        0 Feb 21 21:46 monitor_servers.sh
+-rw-r--r--. 1 ec2-user ec2-user   22 Feb 21 20:51 class35
+-rw-r--r--. 1 ec2-user ec2-user  934 Feb 21 19:48 filemgt.sh
+-rw-r--r--. 1 ec2-user ec2-user  411 Feb 21 18:47 adduser.sh
+               
+                 6  Sort Files by Size (-lh): 
+                      ls -lh  : The -h option provides human-readable file sizes, and combined with -l, it                          gives a detailed listing with sizes in a more readable format.
+                      [ec2-user@db ~]$ ls -lh
+total 24K
+-rw-r--r--. 1 ec2-user ec2-user  411 Feb 21 18:47 adduser.sh
+drwxr-xr-x. 9 ec2-user ec2-user 4.0K Jan  5 08:28 apache-tomcat-9.0.85
+-rw-r--r--. 1 ec2-user ec2-user   22 Feb 21 20:51 class35
+-rw-r--r--. 1 ec2-user ec2-user  934 Feb 21 19:48 filemgt.sh
+drwxr-xr-x. 2 ec2-user ec2-user  138 Feb 23 15:51 Group2
+    7 List Files with a Certain Extension (e.g., .txt):
+        ls *.txt             This command lists files with a specific extension, in this case, files with a .txt extension. * = wildcat  eg.
+[ec2-user@db ~]$ ls *.sh
+adduser.sh  filemgt.sh  monitor_servers.sh  packageinstall.sh
+Remember, these commands can be combined to suit your needs. The ls command offers a variety of options to customize the output based on your preferences. Explore the manual (man ls) for more options and details.
+ 
+
+Ticket 15-- Creating and Deleting Files
+Create new text files using commands like touch or echo, and delete files using the rm command. Practice creating and removing files to manage your file system effectively.
+ Examples of creating and deleting files using commands like touch, echo, and rm:
+1.	Using touch to Create Empty Files:
+# Create an empty text file named "example.txt"
+touch example.txt
+
+# Create multiple empty files at once
+touch file1.txt file2.txt file3.txt
+2. Using echo to Create and Populate Text Files:
+# Create a text file with content using echo
+echo "Hello, this is a sample text." > sample.txt
+
+# Append more text to the same file
+echo "Additional text." >> sample.txt
+
+# Create another text file
+echo "This is a new file." > newfile.txt
+
+3. Using rm to Delete Files:
+# Delete a single file
+rm example.txt
+
+# Delete multiple files
+rm file1.txt file2.txt file3.txt
+
+# Forcefully delete a file without prompting
+rm -f newfile.txt
+
+# Delete a directory and its contents recursively
+rm -r my_directory
+
+Please be cautious when using rm, especially with the -r option, as it can delete files and directories recursively without confirmation. Always double-check your command before executing it.
+Remember that once a file is deleted using rm, it cannot be easily recovered. Use these commands with care and ensure you have the necessary permissions to perform these actions on the files and directories in question.
+
+
+
+Ticket 16-- Navigating the Filesystem
+Use commands like cd, pwd, and ls to navigate the Linux filesystem. Learn how to change directories, display the current working directory, and list directory contents to explore the directory structure.
+1.	cd (Change Directory): 
+To change to a specific directory:    cd /path/to/directory
+To go back to the home directory:      cd ~
+To go up one level in the directory structure:   cd ..
+2.	pwd (Print Working Directory)
+To display the current working directory
+pwd
+
+Certainly! Here are some basic commands to navigate the Linux filesystem:
+1. cd (Change Directory):
+•	To change to a specific directory:
+bashCopy code
+cd /path/to/directory 
+•	To go back to the home directory:
+bashCopy code
+cd ~ 
+•	To go up one level in the directory structure:
+bashCopy code
+cd .. 
+2. pwd (Print Working Directory):
+•	To display the current working directory:
+pwd 
+3.	ls (List Directory Contents):
+ls     To list files and directories in the current working directory:
+ls -l  to list files with detail information
+ls -a  to list files including hidden ones
+ls -la, ls -al   to list files including hidden and detailed info.
+         Example Workfow:
+           1 Navigation to a Directory:
+   Cd/path/to/directory
+            2   Print current working directory
+                 Pwd
+              3 list content of a directory :  ls
+              4  Change to a parent directory  : cd ..
+               5 list content of parent directory : ls
+[ec2-user@db ~]$ cd ~
+[ec2-user@db ~]$ pwd
+/home/ec2-user
+[ec2-user@db ~]$ cd ..
+[ec2-user@db home]$ pwd
+/home
+        These commands form the basics of filesystem navigation in Linux. They are essential for moving around the directory structure, checking your current location, and inspecting the contents of directories. Feel free to explore additional options for these commands by checking their respective manual pages (man cd, man pwd, man ls).
+            
+
+
+
+Ticket 17-- Displaying File Content
+Use commands like cat, less, and head to display the contents of text files. Explore options for viewing file contents, such as scrolling through long files, displaying specific line ranges, or searching for text patterns.
+1. cat (Concatenate and Display):
+•	cat filename.txt  : Display the entire content of a file:
+
+Certainly! Here are examples of using cat, less, and head commands to display the contents of text files in various ways:
+1. cat (Concatenate and Display):
+•	cat filename.txt   :Display the entire content of a file:
+2. less (Pager for Viewing Text Files):
+•	less filename.txt   :Display the content of a file and navigate through it interactively: In less, you can use arrow keys to scroll, q to quit, / to search, and more.
+3. head (Display the Beginning of a File):
+•	Display the first N lines of a file (default is 10)
+Head filename.txt or    head -n filename.txt (to display a specific number of lines)
+Additional Options:
+•	Scroll Through Long Files in less:
+•	Use the spacebar to scroll down.
+•	Use b to scroll up.
+•	Press G to go to the end of the file.
+•	Press 1G to go to the beginning.
+•	Display Specific Line Range in cat:    Troubleshoot an example to understand
+cat filename.txt | sed -n ‘5,10p      This example uses sed to display lines 5 to 10 of the file
+•	Search for Text in less:
+•	While in less, press / followed by the text to search. Press n to go to the next occurrence.
+These commands provide flexibility when viewing and exploring the contents of text files. Feel free to combine options or use them based on your specific needs. For more details, check the manual pages (man cat, man less, man head).
+
+
+
+
+
+Ticket 18-- Copying and Moving Files
+Use commands like cp and mv to copy and move files and directories between locations on your Linux system. Practice copying files to create backups and moving files to organize your filesystem.
+1. Using cp to Copy Files:
+•	Copy a file to another location: cp sourcefile.txt destination/
+       
+             Copy a file and rename it:   cp sourcefile.txt destination/newfile.txt
+    Copy a directory and its contents recursively:  cp -r sourcedir/ destination/
+2. Using mv to Move (or Rename) Files:
+•	Move a file to another location (also used for renaming):                                       mv sourcefile.txt destination/
+•	
+.  Move a file and rename it: mv sourcefile.txt destination/newfile.txt
+
+.Move a directory and its contents recursively : mv sourcedir/ destination/
+
+Examples
+Copying files:
+# Copy a file to another location
+cp myfile.txt /path/to/backup/
+
+# Copy a directory and its contents recursively
+cp -r myfolder/ /path/to/backup/
+Moving (or Renaming) Files:
+# Move a file to another location (also used for renaming)
+mv myfile.txt /path/to/newlocation/
+
+# Move a directory and its contents recursively
+mv myfolder/ /path/to/newlocation/
+
+Additional Options:
+•	- Prompt Before Overwriting (for cp): cp -i sourcefile.txt destination/
+•	This will prompt you before overwriting any existing files.
+•	
+-	Verbose Mode (for cp and mv):
+cp -v sourcefile.txt destination/
+mv -v myfile.txt /path/to/newlocation/
+This will display the files as they are copied or moved.
+-	Preserve Timestamps (for cp):   cp -p sourcefile.txt destination/
+This will preserve the timestamps of the original file.
+
+
+Ticket 19-- Managing Permissions
+Use commands like chmod and chown to manage file and directory permissions and ownership on your Linux system. Practice changing file permissions to control access rights for users and groups and modifying file ownership to manage file security.
+Changing file  Permissions with chmod
+Basic permissions
+•	Give read, write, and execute permissions to the owner of the file: 
+•	th
+•	Remove write permission for the group : chmod g-w file.txt
+•	Allow read and execute permissions for others: chmod o+rx file.txt
+Numeric Representation: 
+Set read, write, and execute for the owner, read and execute for the group, and read-only for others: chmod 754 file.txt
+Give full permissions to everyone: chmod 777 file.txt
+-	Changing File Ownership with chown:
+             Change Owner: chown newuser file.txt
+              Change the owner and group of a file: chown newuser:newgroup file.txt
+-	Recursive Ownership Change: Change the owner of all files and directories in a directory recursively: chown -R newuser:newgroup /path/to/directory
+Combined Usage:
+
+Set Permissions and Ownership Together:
+•	Change the owner to "user" and give read and write permissions to the owner, read-only to the group, and no permissions to other
+•	chown user file.txt && chmod 640 file.txt
+•	
+Modify Group Ownership:
+•	Change the group of a file and give read and write permissions to the new group:
+chown :newgroup file.txt && chmod g+rw file.txt
+Remember to be careful when modifying permissions and ownership, as it can impact the security and functionality of your system. Always verify the changes you make to avoid unintended consequences.
+
+
+Ticket 20-- Shutting Down Instance and Exiting MobaXterm
+To gracefully shut down the instance and end the MobaXterm session, execute the following command:
+sudo shutdown -h now
+This command will initiate an immediate shutdown of the instance, halting all processes and powering off the virtual machine in a safe manner. After executing this command, ensure to close the MobaXterm session to complete the process.
+
+
+These additional tasks should provide further opportunities for practice and skill development in each respective area. Let me know if you need further assistance or clarification on any of these tasks, as a team.
+
+~Abi Landmark Technologies
+
+
+
