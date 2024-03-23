@@ -81,9 +81,58 @@ Download Maven from official Apache Maven site.
 Extract the downloaded archive to your preferred installation directory.
 Add the Maven 'bin' directory to your system's PATH variable.
 Verify Maven installation using the command mvn -version.
-Adjust Maven settings to use Nexus as a repository.
+
+Adjust Maven settings to use Nexus as a repository:
+ Create artifactories[maven-remote-repos] and add them in the  
+     distributionMGT tag in pom.xml -  using maven server:
+[ec2-user@maven ~]$ cd jp
+[ec2-user@maven jp]$ ls
+web
+[ec2-user@maven jp]$ cd web
+[ec2-user@maven web]$ ls
+deploy-k8s.yml      Jenkinsfile-build23             JenkinsfiledeclarativeJuneBathc  Jenkinsfile_paypal28        pom.xml
+docker-compose.yml  Jenkinsfile_Dec2023             Jenkinsfile_docker               Jenkinsfiles-declarative29  src
+Dockerfile          JenkinsfileDeclarative          Jenkinsfile-ebay                 Jenkinsfile_sep22           target
+Jenkinsfile         Jenkinsfile_declarative042023   JenkinsfileJuly2021              Jenkinsfile-sep23-decl      tesla.xml
+Jenkinsfile11       Jenkinsfile-declarative23       Jenkinsfile-July2023             Jenkinsfile-Sep23-scripted
+Jenkinsfile34       Jenkinsfile_declarativeDec2023  Jenkinsfile_March2023            Jenkinsfile_tesla
+[ec2-user@maven web]$ vi pom.xml
+
+
+     <url>http://54.85.4.8:8181/mylandmarktech/repository/tesla-releases/</url>
+     <url>http://54.85.4.8:8181/mylandmarktech/repository/tesla-snapshots/</url>
+
 Locate the Maven settings.xml file (usually in the conf directory).
-Add a <server> section with Nexus repository details (ID, username, password).
+Add a <server> section with Nexus repository details (ID, username, password):
+
+[ec2-user@maven ~]$ cd /opt
+[ec2-user@maven opt]$ ls
+maven
+[ec2-user@maven opt]$ cd maven
+[ec2-user@maven maven]$ ls
+bin  boot  conf  lib  LICENSE  NOTICE  README.txt
+[ec2-user@maven maven]$ ls conf/
+logging  settings.xml  toolchains.xml
+[ec2-user@maven maven]$ cd conf
+[ec2-user@maven conf]$ vi settings.xml
+ Configure nexus login credentials in settings.xml file in the  
+     conf directory in the maven server  
+           userName = admin 
+           password= admin@123
+
+    <server> 
+          <id>deploymentRepo</id>
+      <username>repouser</username>
+      <password>repopwd</password>
+      </server>
+adjust as below using the username and passwd used in logging into nexus server browser
+  paste it just b4 the server closing tag
+   <server>
+      <id>nexus</id>
+      <username>admin</username>
+      <password>jboy123</password>
+    </server>
+
 Test Maven by deploying and retrieving artifacts from Nexus.
 -----------3C)Task: Set up Nexus as the artifact repository manager.
 Download Nexus from the official website.
