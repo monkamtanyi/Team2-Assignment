@@ -63,8 +63,67 @@ Create a new branch in the repository, make changes to the branch, merge the cha
 	git remote -v
 	git push friday master
 Enter github account username 
-Enter github account password == use personal access token
+Enter github account password == use personal access token 
+DETAILS BELOW
+mkdir sample4
+[moka@db2 ~]$ cd sample4
+[moka@db2 sample4]$ touch april
+[moka@db2 sample4]$ touch may
+[moka@db2 sample4]$ git init
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint:   git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint:   git branch -m <name>
+Initialized empty Git repository in /home/moka/sample4/.git/
+[moka@db2 sample4]$ git add . april
+[moka@db2 sample4]$ git add . may
+[moka@db2 sample4]$ git status
+On branch master
 
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   april
+        new file:   may
+
+[moka@db2 sample4]$ git commit -m "third commit"
+[master (root-commit) b044cdf] third commit
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 april
+ create mode 100644 may
+[moka@db2 sample4]$ git log
+commit b044cdf5edaa016702e9eeaa897a2a0420f4e58b (HEAD -> master)
+Author: sanyibayor <sanyibayor@gmail.com>
+Date:   Sat Mar 16 01:46:28 2024 +0000
+
+    third commit
+[moka@db2 sample4]$ git remote add origin https://github.com/sanyibayor/Team2.git
+[moka@db2 sample4]$ git remote -v
+origin  https://github.com/sanyibayor/Team2.git (fetch)
+origin  https://github.com/sanyibayor/Team2.git (push)
+[moka@db2 sample4]$ git remote add friday https://github.com/sanyibayor/Team2.git
+[moka@db2 sample4]$ git remote -v
+friday  https://github.com/sanyibayor/Team2.git (fetch)
+friday  https://github.com/sanyibayor/Team2.git (push)
+origin  https://github.com/sanyibayor/Team2.git (fetch)
+origin  https://github.com/sanyibayor/Team2.git (push)
+[moka@db2 sample4]$ git push friday master
+Username for 'https://github.com': sanyibayor
+Password for 'https://sanyibayor@github.com':
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 212 bytes | 212.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/sanyibayor/Team2.git
+ * [new branch]      master -> master
 
 Ticket 03 - Maven:
 Task: Create a Maven Project
